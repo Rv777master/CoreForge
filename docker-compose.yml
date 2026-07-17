@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    image: coreforge-backend:1.0
+    pull_policy: build
+    container_name: coreforge-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    volumes:
+      - backend_logs:/app/logs
+    networks:
+      - coreforge_network
+    expose:
+      - "5000"
+
+  frontend:
+    build: ./frontend
+    image: coreforge-frontend:1.0
+    pull_policy: build
+    container_name: coreforge-frontend
+    restart: unless-stopped
+    networks:
+      - coreforge_network
+    expose:
+      - "80"
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: coreforge-nginx
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - coreforge_network
+
+networks:
+  coreforge_network:
+    driver: bridge
+
+volumes:
+  backend_logs:
+    # NOTE: There is deliberately no `mongo` service or `mongo_data` volume
+    # here. This project uses MongoDB Atlas (a cloud-managed database)
+    # instead of a self-hosted MongoDB container — see README for details.
