@@ -1,0 +1,55 @@
+<svg width="100%" viewBox="0 0 680 600" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>CoreForge three-tier architecture</title>
+<desc>A three-tier architecture. Tier 1, presentation, is the client browser. Tier 2, application, runs on an AWS EC2 instance inside a Docker Compose network, containing an Nginx reverse proxy that routes root path requests to a frontend container and /api requests to a backend container. Tier 3, data, is an external MongoDB Atlas cluster.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<style>
+text { font-family: -apple-system, "Segoe UI", Arial, sans-serif; fill: #2c2c2a; }
+.subtitle { font-size: 12px; fill: #5f5e5a; }
+.title { font-size: 14px; font-weight: 600; }
+.tier { fill: none; stroke: #888780; stroke-width: 0.5; }
+.box { fill: #f1efe8; stroke: #888780; stroke-width: 0.5; }
+.nginx { fill: #EEEDFE; stroke: #534AB7; stroke-width: 0.5; }
+.frontend { fill: #E1F5EE; stroke: #0F6E56; stroke-width: 0.5; }
+.backend { fill: #FAECE7; stroke: #993C1D; stroke-width: 0.5; }
+.arr { stroke: #73726c; stroke-width: 1.5; fill: none; }
+</style>
+
+<rect class="tier" x="40" y="40" width="600" height="100" rx="16"/>
+<text class="title" x="60" y="68">Tier 1 · Presentation</text>
+<rect class="box" x="270" y="76" width="140" height="50" rx="8"/>
+<text class="title" x="340" y="98" text-anchor="middle">Browser</text>
+<text class="subtitle" x="340" y="116" text-anchor="middle">Client request</text>
+
+<line x1="340" y1="140" x2="340" y2="218" class="arr" marker-end="url(#arrow)"/>
+
+<rect class="tier" x="40" y="160" width="600" height="280" rx="16"/>
+<text class="title" x="60" y="188">Tier 2 · Application</text>
+<text class="subtitle" x="60" y="206">AWS EC2 · Docker Compose network</text>
+
+<rect class="nginx" x="240" y="220" width="200" height="56" rx="8"/>
+<text class="title" x="340" y="244" text-anchor="middle">Nginx reverse proxy</text>
+<text class="subtitle" x="340" y="262" text-anchor="middle">Listens on :8080</text>
+
+<line x1="300" y1="276" x2="185" y2="340" class="arr" marker-end="url(#arrow)"/>
+<text class="subtitle" x="215" y="312">/</text>
+<line x1="380" y1="276" x2="455" y2="340" class="arr" marker-end="url(#arrow)"/>
+<text class="subtitle" x="400" y="312">/api</text>
+
+<rect class="frontend" x="90" y="340" width="190" height="56" rx="8"/>
+<text class="title" x="185" y="364" text-anchor="middle">Frontend</text>
+<text class="subtitle" x="185" y="382" text-anchor="middle">React build, served on :80</text>
+
+<rect class="backend" x="360" y="340" width="190" height="56" rx="8"/>
+<text class="title" x="455" y="364" text-anchor="middle">Backend</text>
+<text class="subtitle" x="455" y="382" text-anchor="middle">Express API on :5000</text>
+
+<line x1="455" y1="396" x2="455" y2="478" class="arr" marker-end="url(#arrow)"/>
+
+<rect class="tier" x="40" y="460" width="600" height="100" rx="16"/>
+<text class="title" x="60" y="488">Tier 3 · Data</text>
+<rect class="box" x="360" y="496" width="190" height="50" rx="8"/>
+<text class="title" x="455" y="518" text-anchor="middle">MongoDB Atlas</text>
+<text class="subtitle" x="455" y="536" text-anchor="middle">External database cluster</text>
+</svg>
