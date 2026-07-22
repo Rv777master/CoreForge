@@ -218,7 +218,6 @@ chmod +x ~/.docker/cli-plugins/docker-buildx
 | ![CI/CD pipeline passing](docs/screenshots/cicd-success.png) | ![PC Builder page](docs/screenshots/pc-builder.png) |
 | GitHub Actions CI/CD run succeeding | PC Builder in action |
 
-*(Replace the file names above with your actual screenshot files in `docs/screenshots/`. Add or remove rows as needed.)*
 
 ---
 
